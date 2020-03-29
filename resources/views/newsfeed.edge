@@ -1,5 +1,130 @@
 @layout('master')
 
+@section('scripts')
+{{ script('assets/plugins/autosize.min.js') }}
+<script>
+  $(function() {
+    autosize($('#composer textarea'));
+
+    $('textarea').on('keyup', function() {
+      if($(this).val() == 'hello') {
+        $(this).addClass('error');
+      }
+    })
+  })
+</script>
+@endsection
+
 @section('body')
-<h1>Newsfeed Page</h1>
+<div class="newsfeed-container">
+  <div id="composer">
+    <div class="row composer-holder">
+      <div class="profile-picture">
+        <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="chat-picture rounded-circle">
+      </div>
+      <div class="col pl-0">
+        <textarea placeholder="Write something..."></textarea>
+      </div>
+    </div>
+    <div class="composer-tools row m-0">
+      <div class="col">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <i class="fas fa-camera"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-user-plus"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="far fa-smile"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fas fa-map-marker-alt"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="action-buttons">
+        <button type="button" class="btn btn-success btn-sm" id="post">POST</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="newsfeed-container">
+  <div class="post-header row mx-3 mt-3">
+    <div class="post-profilepic-holder">
+      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+    </div>
+    <div class="col pl-1">
+      <div class="post-user-name"><a href="#">William Smith</a></div>
+      <div class="info-text">6 hours ago</div>
+    </div>
+    <div class="dropdown">
+      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </div>
+  <div class="post-body mx-3">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </div>
+</div>
+
+<div class="newsfeed-container">
+  <div class="post-header row mx-3 mt-3">
+    <div class="post-profilepic-holder">
+      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+    </div>
+    <div class="col pl-1">
+      <div class="post-user-name"><a href="#">William Smith</a></div>
+      <div class="info-text">6 hours ago</div>
+    </div>
+    <div class="dropdown">
+      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </div>
+  <div class="post-body mx-3">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+    <img src="https://wallpaperplay.com/walls/full/1/b/1/289383.jpg" class="img-fluid mt-2">
+  </div>
+</div>
+
+<div class="newsfeed-container">
+  <div class="post-header row mx-3 mt-3">
+    <div class="post-profilepic-holder">
+      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+    </div>
+    <div class="col pl-1">
+      <div class="post-user-name"><a href="#">William Smith</a></div>
+      <div class="info-text">6 hours ago</div>
+    </div>
+    <div class="dropdown">
+      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+  </div>
+  <div class="post-body mx-3">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    <iframe class="mt-2" width="560" height="315" src="https://www.youtube.com/embed/2oXpBK2iNQU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 @endsection

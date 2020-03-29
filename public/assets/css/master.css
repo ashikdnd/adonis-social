@@ -14,12 +14,20 @@ html, body, .container-fluid {
 .navbar {
   background: #10508d;
 }
+.info-text {
+  font-size: 12px;
+  color: #5f5f5f;
+}
+
 .sidebar-holder {
   width: 240px !important;
   background: #0d407f;
 }
 #sidebar {
   color: white;
+  width: 240px;
+  position: relative;
+  margin: 0;
 }
 
 #sidebar .profile-picture {
@@ -50,7 +58,7 @@ html, body, .container-fluid {
   border: 0 !important;
 }
 
-.chatbar .chat-picture {
+.chat-picture {
   width: 32px;
 }
 
@@ -73,4 +81,67 @@ html, body, .container-fluid {
 
 .feedarea {
   height: 100% !important;
+}
+
+.newsfeed-container {
+  width: 600px;
+  border: 1px solid #eaeaea;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+.composer-holder {
+  margin: 0 !important;
+}
+#composer .chat-picture {
+  float: left;
+  margin: 10px;
+}
+#composer textarea {
+  width: 100%;
+  margin: 10px 10px 10px 0;
+  min-height: 32px;
+  max-height: 180px;
+  outline: 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 0;
+}
+
+#composer textarea:focus {
+  border: 1px solid #f3faff !important;
+}
+
+#composer #post {
+  margin: 7px 15px;
+}
+.composer-tools {
+  background: #f4faff;
+}
+.composer-tools ul {
+  margin: 8px 0 0 0;
+}
+
+.composer-tools i {
+  color: #8097af;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.post-header {
+  font-size: 14px !important;
+  height: 46px;
+}
+.post-header .picture {
+  width: 40px;
+}
+.post-header .post-user-name {
+  font-weight: bold;
+}
+.post-header .actions {
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.post-body {
+  font-size: 14px !important;
 }
