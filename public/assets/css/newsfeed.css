@@ -4,3 +4,8 @@
 .profile-info .username {
   display: block;
 }
+
+ul
+{
+   list-style-type: none !important;
+}

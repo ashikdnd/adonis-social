@@ -6,16 +6,55 @@
   $(function() {
     autosize($('#composer textarea'));
 
-    $('textarea').on('keyup', function() {
-      if($(this).val() == 'hello') {
-        $(this).addClass('error');
-      }
-    })
-  })
+    
+    $("button").click(function(){
+    
+    var postmsg = '<div class="newsfeed-container">  \
+  <div class="post-header row mx-3 mt-3"> \
+    <div class="post-profilepic-holder"> \
+  <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle"> \
+    </div>\
+    <div class="col pl-1">\
+      <div class="post-user-name"><a href="#">William Smith</a></div>\
+      <div class="info-text">6 hours ago</div>\
+    </div>\
+    <div class="dropdown">\
+      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> \
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">\
+      <a class="dropdown-item" href="#">Action</a>\
+        <a class="dropdown-item" href="#">Another action</a>\
+        <a class="dropdown-item" href="#">Something else here</a>\
+      </div>\
+    </div>\
+  </div>\
+  <div class="post-body mx-3"> ' +    document.getElementById("textarea").value +  '</div> '; 
+      
+
+  console.log(postmsg);
+    
+  console.log(document.getElementById("textarea").value);
+
+  var newItem = document.createElement("LI");
+  //var textnode = document.createTextNode(postmsg);
+  //newItem.appendChild(textnode);
+  newItem.innerHTML = postmsg;
+  var list = document.getElementById("newsfeed-ul");
+  list.insertBefore(newItem, list.childNodes[0]);
+
+  document.getElementById("textarea").value = "";
+
+
+
+
+      })
+
+      })
 </script>
 @endsection
 
 @section('body')
+<!--form  method="POST" action="{{route('postfuncalias')}}"-->
+   {{ csrfField() }}
 <div class="newsfeed-container">
   <div id="composer">
     <div class="row composer-holder">
@@ -23,7 +62,7 @@
         <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="chat-picture rounded-circle">
       </div>
       <div class="col pl-0">
-        <textarea placeholder="Write something..."></textarea>
+        <textarea placeholder="Write something..." name="textarea" id="textarea" ng-model="textarea"></textarea>
       </div>
     </div>
     <div class="composer-tools row m-0">
@@ -44,12 +83,13 @@
         </ul>
       </div>
       <div class="action-buttons">
-        <button type="button" class="btn btn-success btn-sm" id="post">POST</button>
+        <button class="btn btn-success btn-sm" id="post">POST</button>
       </div>
     </div>
   </div>
 </div>
-
+<ul class="newsfeed-ul" id="newsfeed-ul" >
+  <li>
 <div class="newsfeed-container">
   <div class="post-header row mx-3 mt-3">
     <div class="post-profilepic-holder">
@@ -76,7 +116,8 @@
     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
   </div>
 </div>
-
+</li>
+<li>
 <div class="newsfeed-container">
   <div class="post-header row mx-3 mt-3">
     <div class="post-profilepic-holder">
@@ -102,7 +143,8 @@
     <img src="https://wallpaperplay.com/walls/full/1/b/1/289383.jpg" class="img-fluid mt-2">
   </div>
 </div>
-
+</li>
+<li>
 <div class="newsfeed-container">
   <div class="post-header row mx-3 mt-3">
     <div class="post-profilepic-holder">
@@ -127,4 +169,6 @@
     <iframe class="mt-2" width="560" height="315" src="https://www.youtube.com/embed/2oXpBK2iNQU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
+</li>
+</ul>
 @endsection

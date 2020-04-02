@@ -1,6 +1,5 @@
 'use strict'
 
-import * as auth from "@adonisjs/auth/src/Schemes/Session";
 
 class AuthController {
   async login({request, response, session}) {
@@ -8,6 +7,8 @@ class AuthController {
     console.log(params)
     response.redirect('/')
   }
+
+ 
 }
 
 module.exports = AuthController
