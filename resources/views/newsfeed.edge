@@ -7,7 +7,7 @@
     autosize($('#composer textarea'));
 
     
-    $("button").click(function(){
+    $("#post").click(function(){
     
     var postmsg = '<div class="newsfeed-container">  \
   <div class="post-header row mx-3 mt-3"> \
@@ -21,9 +21,9 @@
     <div class="dropdown">\
       <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> \
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">\
-      <a class="dropdown-item" href="#">Action</a>\
-        <a class="dropdown-item" href="#">Another action</a>\
-        <a class="dropdown-item" href="#">Something else here</a>\
+      <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>\
+        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>\
+        <a class="dropdown-item" href="#" id="else">Something else here</a>\
       </div>\
     </div>\
   </div>\
@@ -43,12 +43,20 @@
 
   document.getElementById("textarea").value = "";
 
+    });
+    
+    $.jdeletepost = function(param){
+      console.log("from jdeletepost");
+      $(param).closest("li").remove();
 
-
+    }
 
       })
 
-      })
+  function deletepost(param){
+      console.log("from action");
+      $.jdeletepost(param);
+    };
 </script>
 @endsection
 
@@ -89,6 +97,7 @@
   </div>
 </div>
 <ul class="newsfeed-ul" id="newsfeed-ul" >
+ 
   <li>
 <div class="newsfeed-container">
   <div class="post-header row mx-3 mt-3">
@@ -99,13 +108,13 @@
       <div class="post-user-name"><a href="#">William Smith</a></div>
       <div class="info-text">6 hours ago</div>
     </div>
-    <div class="dropdown">
+    <div class="dropdown">  
       <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+        <a class="dropdown-item" href="#" id="else">Something else here</a>
       </div>
     </div>
   </div>
@@ -130,10 +139,10 @@
     <div class="dropdown">
       <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">       
+        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+        <a class="dropdown-item" href="#" id="else">Something else here</a>
       </div>
     </div>
   </div>
@@ -158,9 +167,9 @@
       <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+        <a class="dropdown-item" href="#" id="else">Something else here</a>
       </div>
     </div>
   </div>
