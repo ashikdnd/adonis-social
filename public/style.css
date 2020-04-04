@@ -67,10 +67,7 @@ section:before {
   animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.5s forwards;
 }
 
-ul
-{
-   list-style-type: none !important;
-}
+
 
 a {
   color: inherit;

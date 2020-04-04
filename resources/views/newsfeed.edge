@@ -6,63 +6,55 @@
   $(function() {
     autosize($('#composer textarea'));
 
-    
-    $("#post").click(function(){
-    
-    var postmsg = '<div class="newsfeed-container">  \
-  <div class="post-header row mx-3 mt-3"> \
-    <div class="post-profilepic-holder"> \
-  <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle"> \
-    </div>\
-    <div class="col pl-1">\
-      <div class="post-user-name"><a href="#">William Smith</a></div>\
-      <div class="info-text">6 hours ago</div>\
-    </div>\
-    <div class="dropdown">\
-      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> \
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">\
-      <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>\
-        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>\
-        <a class="dropdown-item" href="#" id="else">Something else here</a>\
-      </div>\
-    </div>\
-  </div>\
-  <div class="post-body mx-3"> ' +    document.getElementById("textarea").value +  '</div> '; 
-      
+    $('#post').on('click', function() {
+      var postMsg = $('#composer textarea').val();
+      console.log(postMsg);
 
-  console.log(postmsg);
-    
-  console.log(document.getElementById("textarea").value);
+      var postHtml = createPostHtml(postMsg);
 
-  var newItem = document.createElement("LI");
-  //var textnode = document.createTextNode(postmsg);
-  //newItem.appendChild(textnode);
-  newItem.innerHTML = postmsg;
-  var list = document.getElementById("newsfeed-ul");
-  list.insertBefore(newItem, list.childNodes[0]);
+      $('#composer textarea').val('')
 
-  document.getElementById("textarea").value = "";
+      $('#newsfeed-ul').prepend(postHtml);
+    })
 
-    });
-    
-    $.jdeletepost = function(param){
-      console.log("from jdeletepost");
-      $(param).closest("li").remove();
-
+    function createPostHtml(msg) {
+      return '<li>\
+        <div class="newsfeed-container">\
+          <div class="post-header row mx-3 mt-3">\
+            <div class="post-profilepic-holder">\
+              <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">\
+            </div>\
+            <div class="col pl-1">\
+              <div class="post-user-name"><a href="#">William Smith</a></div>\
+              <div class="info-text">6 hours ago</div>\
+            </div>\
+            <div class="dropdown">  \
+              <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>\
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">\
+                <a class="dropdown-item del-post" href="#">Delete Post</a>\
+                <a class="dropdown-item" href="#">Another action</a>\
+                <a class="dropdown-item" href="#">Something else here</a>\
+              </div>\
+            </div>\
+          </div>\
+          <div class="post-body mx-3">\
+           '+msg+'\
+          </div>\
+        </div>\
+      </li>';
     }
 
-      })
+    $(document).on('click', '.del-post', function() {
+      $(this).closest('li').fadeOut();
+    })
 
-  function deletepost(param){
-      console.log("from action");
-      $.jdeletepost(param);
-    };
+});
 </script>
 @endsection
 
 @section('body')
 <!--form  method="POST" action="{{route('postfuncalias')}}"-->
-   {{ csrfField() }}
+{{ csrfField() }}
 <div class="newsfeed-container">
   <div id="composer">
     <div class="row composer-holder">
@@ -97,87 +89,87 @@
   </div>
 </div>
 <ul class="newsfeed-ul" id="newsfeed-ul" >
- 
+
   <li>
-<div class="newsfeed-container">
-  <div class="post-header row mx-3 mt-3">
-    <div class="post-profilepic-holder">
-      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
-    </div>
-    <div class="col pl-1">
-      <div class="post-user-name"><a href="#">William Smith</a></div>
-      <div class="info-text">6 hours ago</div>
-    </div>
-    <div class="dropdown">  
-      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+    <div class="newsfeed-container">
+      <div class="post-header row mx-3 mt-3">
+        <div class="post-profilepic-holder">
+          <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+        </div>
+        <div class="col pl-1">
+          <div class="post-user-name"><a href="#">William Smith</a></div>
+          <div class="info-text">6 hours ago</div>
+        </div>
+        <div class="dropdown">  
+          <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
-        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
-        <a class="dropdown-item" href="#" id="else">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+            <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+            <a class="dropdown-item" href="#" id="else">Something else here</a>
+          </div>
+        </div>
+      </div>
+      <div class="post-body mx-3">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
       </div>
     </div>
-  </div>
-  <div class="post-body mx-3">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  </div>
-</div>
-</li>
-<li>
-<div class="newsfeed-container">
-  <div class="post-header row mx-3 mt-3">
-    <div class="post-profilepic-holder">
-      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
-    </div>
-    <div class="col pl-1">
-      <div class="post-user-name"><a href="#">William Smith</a></div>
-      <div class="info-text">6 hours ago</div>
-    </div>
-    <div class="dropdown">
-      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+  </li>
+  <li>
+    <div class="newsfeed-container">
+      <div class="post-header row mx-3 mt-3">
+        <div class="post-profilepic-holder">
+          <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+        </div>
+        <div class="col pl-1">
+          <div class="post-user-name"><a href="#">William Smith</a></div>
+          <div class="info-text">6 hours ago</div>
+        </div>
+        <div class="dropdown">
+          <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">       
-        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
-        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
-        <a class="dropdown-item" href="#" id="else">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">       
+            <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+            <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+            <a class="dropdown-item" href="#" id="else">Something else here</a>
+          </div>
+        </div>
+      </div>
+      <div class="post-body mx-3">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+        <img src="https://wallpaperplay.com/walls/full/1/b/1/289383.jpg" class="img-fluid mt-2">
       </div>
     </div>
-  </div>
-  <div class="post-body mx-3">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  </li>
+  <li>
+    <div class="newsfeed-container">
+      <div class="post-header row mx-3 mt-3">
+        <div class="post-profilepic-holder">
+          <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+        </div>
+        <div class="col pl-1">
+          <div class="post-user-name"><a href="#">William Smith</a></div>
+          <div class="info-text">6 hours ago</div>
+        </div>
+        <div class="dropdown">
+          <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
 
-    <img src="https://wallpaperplay.com/walls/full/1/b/1/289383.jpg" class="img-fluid mt-2">
-  </div>
-</div>
-</li>
-<li>
-<div class="newsfeed-container">
-  <div class="post-header row mx-3 mt-3">
-    <div class="post-profilepic-holder">
-      <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
-    </div>
-    <div class="col pl-1">
-      <div class="post-user-name"><a href="#">William Smith</a></div>
-      <div class="info-text">6 hours ago</div>
-    </div>
-    <div class="dropdown">
-      <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
-        <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
-        <a class="dropdown-item" href="#" id="else">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#" id="deletepost" onClick="deletepost(this);">Delete Post</a>
+            <a class="dropdown-item" href="#" id="anotheraction">Another action</a>
+            <a class="dropdown-item" href="#" id="else">Something else here</a>
+          </div>
+        </div>
+      </div>
+      <div class="post-body mx-3">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        <iframe class="mt-2" width="560" height="315" src="https://www.youtube.com/embed/2oXpBK2iNQU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-  </div>
-  <div class="post-body mx-3">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    <iframe class="mt-2" width="560" height="315" src="https://www.youtube.com/embed/2oXpBK2iNQU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
-</li>
+  </li>
 </ul>
 @endsection
