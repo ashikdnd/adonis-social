@@ -62,7 +62,7 @@ html, body, .container-fluid {
   border: 0 !important;
 }
 
-.chat-picture, .post-comment .picture {
+.chat-picture, .post-comment .picture, .comments .picture {
   width: 32px;
 }
 
@@ -151,7 +151,7 @@ html, body, .container-fluid {
   margin-top: 6px;
 }
 
-.post-body {
+.post-body, .user-comment {
   font-size: 14px !important;
 }
 .post-comment textarea {
@@ -160,4 +160,10 @@ html, body, .container-fluid {
   border-radius: 9px;
   padding-left: 10px;
   border: 1px solid #b5cdea;
+}
+.comments .tools a {
+  font-size: 13px
+}
+.comments .comment-actions i {
+  font-size: 12px
 }
