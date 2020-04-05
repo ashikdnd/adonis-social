@@ -30,6 +30,10 @@ html, body, .container-fluid {
   margin: 0;
 }
 
+.sidebar-holder aside {
+  width: 240px !important;
+}
+
 #sidebar .profile-picture {
   max-width: 120px !important;
 }
@@ -58,10 +62,15 @@ html, body, .container-fluid {
   border: 0 !important;
 }
 
-.chat-picture {
+.chat-picture, .post-comment .picture {
   width: 32px;
 }
 
+.post-comment textarea {
+  min-height: 32px;
+  max-height: 120px;
+  width: 100%;
+}
 .chatbar span.user-name {
   width: 180px;
   display: inline-block;
@@ -146,9 +155,11 @@ html, body, .container-fluid {
   font-size: 14px !important;
 }
 
+.post-comment textarea {
+  outline: 0;
+  font-size: 14px !important;
+  border-radius: 9px;
+  padding-left: 10px;
+  border: 1px solid #b5cdea;
 
-ul
-{
-   list-style-type: none !important;
-   padding: 0px;!important;
 }
