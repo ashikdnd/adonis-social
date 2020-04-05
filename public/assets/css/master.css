@@ -164,6 +164,63 @@ html, body, .container-fluid {
 .comments .tools a {
   font-size: 13px
 }
-.comments .comment-actions i {
+.comments .comment-actions i, .comment-stats {
   font-size: 12px
 }
+
+.comments .meta:hover .comment-actions {
+  display: block !important;
+}
+
+
+.user-post.ng-enter,
+.user-post.ng-leave,
+.user-post.ng-move {
+  transition: 0.2s linear all;
+}
+
+.user-post.ng-enter,
+.user-post.ng-move {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.user-post.ng-enter.ng-enter-active,
+.user-post.ng-move.ng-move-active {
+  height: 120px;
+  opacity: 1;
+}
+
+.user-post.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.user-post.ng-leave.ng-leave-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+
+.empty-post.ng-leave, .empty-post.ng-move {
+  transition: 0.2s linear all;
+}
+
+.empty-post.ng-enter.ng-enter-active,
+.empty-post.ng-move.ng-move-active {
+  height: inherit;
+  opacity: 1;
+}
+
+.empty-post.ng-leave.ng-leave-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+
+
