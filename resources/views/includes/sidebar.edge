@@ -13,11 +13,11 @@
           </span>
           </div>
         </li>
-        <li class="list-group-item bg-transparent">
+        <li class="list-group-item bg-transparent {{ request.url() == '/' ? 'active': '' }}">
           <i class="fas fa-rss"></i>
           <span>My Newsfeed</span>
         </li>
-        <li class="list-group-item bg-transparent">
+        <li class="list-group-item bg-transparent  {{ request.url() == '/friends' ? 'active': '' }}">
           <i class="fas fa-users"></i>
           <span>My Friends</span>
         </li>

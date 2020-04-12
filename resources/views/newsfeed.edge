@@ -46,7 +46,7 @@
         </div>
         <div class="col pl-2">
           <div class="post-user-name"><a href="#">@{{ post.name }}</a></div>
-          <div class="info-text">@{{ post.time }}</div>
+          <div class="info-text">@{{ post.time | timeAgo }}</div>
         </div>
         <div class="dropleft">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -89,7 +89,7 @@
             <div style="width: 40px"></div>
             <div class="col pl-0 comment-stats">
               <a href="#">Like</a>
-              <span>@{{ cmt.time }}</span>
+              <span>@{{ cmt.time | timeAgo }}</span>
             </div>
           </div>
         </div>

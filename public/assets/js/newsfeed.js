@@ -9,7 +9,7 @@ app.controller('feedCtrl', function($scope, $timeout) {
     console.log($scope.postMsg)
     var postData = {
       name: "John Doe",
-      time: "an hour ago",
+      time: new Date(),
       photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
       text: $scope.postMsg,
       comments: [
@@ -17,13 +17,13 @@ app.controller('feedCtrl', function($scope, $timeout) {
           name: "Willim Smith",
           text: "I am the second commentator",
           photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: "30 mins ago"
+          time: new Date()
         },
         {
           name: "James Colorado",
           text: "I am the first commentator",
           photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: "40 mins ago"
+          time: new Date()
         }
       ]
     };
@@ -55,7 +55,7 @@ app.controller('feedCtrl', function($scope, $timeout) {
           name: "James Colorado",
           text: e.target.value,
           photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: "40 mins ago"
+          time: new Date()
         }
       );
       e.target.value = '';
