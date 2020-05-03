@@ -16,6 +16,8 @@
   {{ script('assets/plugins/bootstrap/bootstrap.min.js') }}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-animate.js"></script>
+  {{ script('assets/plugins/timeago/timeago.min.js') }}
+  {{ script('assets/plugins/timeago/ngtimeago.min.js') }}
 </head>
 
 <body>
@@ -40,7 +42,7 @@
   </div>
 
   <script>
-    var app = angular.module('social', ['ngAnimate']);
+    var app = angular.module('social', ['ngAnimate','yaru22.angular-timeago']);
   </script>
   @!section('scripts')
 </body>
