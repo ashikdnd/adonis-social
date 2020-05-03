@@ -5,11 +5,11 @@
     <div id="menu-list">
       <ul class="list-group sidenav">
         <li class="list-group-item bg-transparent">
-          <div class="profile-info mt-3 mb-3">
-            <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" alt="Profile Picture"
+          <div class="profile-info mt-3 mb-3 text-center">
+            <img src="{{ userData.profile.profile_picture }}" alt="Profile Picture"
                  class="profile-picture rounded-circle img-thumbnail">
             <span class="username mt-2 d-block">
-            John Doe
+            {{ userData.name }}
           </span>
           </div>
         </li>

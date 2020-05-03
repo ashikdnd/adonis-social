@@ -46,7 +46,7 @@
         </div>
         <div class="col pl-2">
           <div class="post-user-name"><a href="#">@{{ post.name }}</a></div>
-          <div class="info-text">@{{ post.time | timeAgo }}</div>
+          <div class="info-text">@{{ post.created_at | timeAgo }}</div>
         </div>
         <div class="dropleft">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -77,6 +77,7 @@
           <div class="row mx-3 meta">
             <div class="cmt-profile-picture">
               <img src="@{{ cmt.photo }}" class="picture rounded-circle">
+              <span>@{{cmt.name}}</span>
             </div>
             <div class="col pl-2 pr-0 user-comment">
               <p>@{{cmt.text}}</p>
@@ -89,7 +90,7 @@
             <div style="width: 40px"></div>
             <div class="col pl-0 comment-stats">
               <a href="#">Like</a>
-              <span>@{{ cmt.time | timeAgo }}</span>
+              <span>@{{ cmt.created_at | timeAgo }}</span>
             </div>
           </div>
         </div>

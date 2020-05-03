@@ -2,39 +2,34 @@ $(function() {
   autosize($('textarea'));
 })
 
-app.controller('feedCtrl', function($scope, $timeout) {
+app.controller('feedCtrl', function($scope, $timeout, $http) {
   $scope.postMsg = '';
   $scope.posts = [];
+
+  $http.get('/getPosts').then(function(res) {
+    $scope.posts = res.data.data;
+  }, function(e) {
+    console.log(e)
+  })
+
   $scope.makePost = function() {
+
     console.log($scope.postMsg)
-    var postData = {
-      name: "John Doe",
-      time: new Date(),
-      photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-      text: $scope.postMsg,
-      comments: [
-        {
-          name: "Willim Smith",
-          text: "I am the second commentator",
-          photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: new Date()
-        },
-        {
-          name: "James Colorado",
-          text: "I am the first commentator",
-          photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: new Date()
-        }
-      ]
-    };
 
-    $scope.postMsg = '';
-
-    $scope.posts.unshift(postData);
-
-    $timeout(function() {
-      autosize($('textarea'));
-    }, 500);
+    $http.post('/post', {postText: $scope.postMsg}).then(function(res) {
+      if(res.data.success) {
+        $scope.postMsg = '';
+        $scope.posts.unshift(res.data.data);
+        $timeout(function() {
+          autosize($('textarea'));
+        }, 500);
+      } else {
+        alert('Unable to post')
+      }
+    }, function(e) {
+      console.log(e)
+      alert('Unable to post')
+    })
   }
 
   $scope.deleteComment = function(comment, ind, pind) {
@@ -50,15 +45,16 @@ app.controller('feedCtrl', function($scope, $timeout) {
   $scope.addComment = function(e, pind) {
     if(e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      $scope.posts[pind].comments.unshift(
-        {
-          name: "James Colorado",
-          text: e.target.value,
-          photo: "https://themesground.com/modern/demo3/HTML/img/profileimg.png",
-          time: new Date()
+      $http.post('/comment', {commentText: e.target.value, pid: $scope.posts[pind]['_id']}).then(function(res) {
+        console.log(res.data)
+        if(res.data.success) {
+          $scope.posts[pind].comments.unshift(res.data.data);
+          e.target.value = '';
         }
-      );
-      e.target.value = '';
+      }, function (e) {
+        console.log(e)
+        alert('Unable to post comment')
+      })
     }
   }
   $scope.onDelete = function(pind){

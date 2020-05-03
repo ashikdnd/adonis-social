@@ -26,6 +26,12 @@
 <!--        </div>-->
       </div>
       <div class="card-body">
+        @if(hasErrorFor('authentication'))
+        <div class="alert alert-danger" role="alert">
+          {{ getErrorFor('authentication') }}
+        </div>
+        @endif
+
         <form method="POST" action="{{ route('doLogin') }}" novalidate>
           {{ csrfField() }}
           <div class="input-group form-group">
