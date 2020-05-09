@@ -3,6 +3,7 @@
 const Profile = use('App/Models/Profile')
 const Comment = use('App/Models/Comment')
 const Post = use('App/Models/Post')
+const Database = use('Database')
 
 class FeedController {
 
@@ -83,6 +84,29 @@ class FeedController {
         success: true
       })
     } catch(e) {
+      response.json({
+        success: false,
+        error: e.message
+      })
+    }
+  }
+
+ 
+  async deletePost({request, response}) {
+
+    const params = request.all();
+    const trx = await Database.beginTransaction()
+    try {
+
+      await Comment.where('post_id', params['key_postid']).delete(trx);
+      await Post.where('_id', params['key_postid']).delete(trx);
+      trx.commit()
+
+      response.json({
+        success: true
+      })
+    } catch(e) {
+      await trx.rollback()
       response.json({
         success: false,
         error: e.message
