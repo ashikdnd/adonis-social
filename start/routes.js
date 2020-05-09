@@ -20,7 +20,9 @@ Route.group(() => {
   Route.get('/', 'FeedController.home').as('newsfeed')
   Route.post('post', 'FeedController.post').as('makepost')
   Route.get('getPosts', 'FeedController.getPosts').as('getposts')
+
   Route.post('comment', 'FeedController.comment').as('makecomment')
+  Route.post('delComment', 'FeedController.deleteComment').as('deletecomment')
 }).middleware(['auth'])
 
 
