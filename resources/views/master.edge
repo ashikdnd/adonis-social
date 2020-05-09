@@ -15,10 +15,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   {{ script('assets/plugins/bootstrap/bootstrap.min.js') }}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-animate.js"></script>
+  {{ script('assets/plugins/timeago/timeago.min.js') }}
+  {{ script('assets/plugins/timeago/ngtimeago.min.js') }}
 </head>
 
-
-<body ng-app="social">
+<body>
   <div class="container-fluid">
     @include('includes.header')
 
@@ -40,7 +42,7 @@
   </div>
 
   <script>
-    let app = angular.module('social', []);
+    var app = angular.module('social', ['ngAnimate','yaru22.angular-timeago']);
   </script>
   @!section('scripts')
 </body>

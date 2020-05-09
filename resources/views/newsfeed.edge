@@ -1,23 +1,19 @@
 @layout('master')
 
-@section('scripts')
-{{ script('assets/plugins/autosize.min.js') }}
-{{ script('assets/js/newsfeed.js') }}
-@endsection
-
 @section('body')
-<div ng-controller="feedCtrl">
+<div ng-app="social" ng-controller="feedCtrl">
   <div class="newsfeed-container">
     <div id="composer">
       <div class="row composer-holder">
         <div class="profile-picture">
           <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="chat-picture rounded-circle">
         </div>
-        {{ postMsg }}
         <div class="col pl-0">
           <textarea placeholder="Write something..." ng-model="postMsg"></textarea>
         </div>
       </div>
+
+
       <div class="composer-tools row m-0">
         <div class="col">
           <ul class="list-inline">
@@ -42,43 +38,76 @@
     </div>
   </div>
 
-  <span>Hello, {{ postMsg }}</span>
-
   <div id="posts-holder">
-    <div class="newsfeed-container" ng-repeat="post in posts">
+    <div class="newsfeed-container user-post" ng-repeat="post in posts">
       <div class="post-header row mx-3 mt-3">
         <div class="post-profilepic-holder">
-          <img ng-src="{{ post.photo }}" class="picture rounded-circle">
+          <img ng-src="@{{ post.photo }}" class="picture rounded-circle">
         </div>
-        <div class="col pl-1">
-          <div class="post-user-name"><a href="#">{{ postMsg }}</a></div>
-          <div class="info-text">{{ post.time }} - {{ posts.length }}</div>
+        <div class="col pl-2">
+          <div class="post-user-name"><a href="#">@{{ post.name }}</a></div>
+          <div class="info-text">@{{ post.created_at | timeAgo }}</div>
         </div>
         <div class="dropleft">
-          <i class="fas fa-ellipsis-h actions" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" ng-click="onDelete($index)">Delete</a>
           </div>
         </div>
       </div>
       <div class="post-body mx-3">
-        {{ post.text }}
+        @{{ post.text }}
       </div>
+      <hr>
       <div class="post-comment mt-3">
         <div class="row mx-3">
           <div class="cmt-profile-picture">
-            <img src="https://themesground.com/modern/demo3/HTML/img/profileimg.png" class="picture rounded-circle">
+            <img src="@{{ post.photo }}" class="picture rounded-circle">
           </div>
-          <div class="col pl-1 pr-0">
-            <textarea placeholder="comments..." class="post-comment-composer" rows="1"></textarea>
+          <div class="col pl-2 pr-0">
+            <textarea placeholder="comments..." class="post-comment-composer" rows="1" ng-keypress="addComment($event, $index)"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="comments-holder">
+        <div class="comments mt-2" ng-repeat="cmt in post.comments">
+          <div class="row mx-3 meta">
+            <div class="cmt-profile-picture">
+              <img src="@{{ cmt.photo }}" class="picture rounded-circle">
+              <span>@{{cmt.name}}</span>
+            </div>
+            <div class="col pl-2 pr-0 user-comment">
+              <p>@{{cmt.text}}</p>
+            </div>
+            <div class="comment-actions" style="display:none">
+              <a href="#" ng-click="deleteComment(cmt, $index, $parent.$index)"><i class="fas fa-times"></i></a>
+            </div>
+          </div>
+          <div class="row tools mx-3">
+            <div style="width: 40px"></div>
+            <div class="col pl-0 comment-stats">
+              <a href="#">Like</a>
+              <span>@{{ cmt.created_at | timeAgo }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="newsfeed-container empty-post" ng-if="!posts.length">
+      <img src="{{ assetsUrl('assets/empty.png') }}" alt="No posts found" style="width: 100%">
+    </div>
   </div>
 
 </div>
+@endsection
+
+
+
+@section('scripts')
+{{ script('assets/plugins/autosize.min.js') }}
+{{ script('assets/js/newsfeed.js') }}
 @endsection
