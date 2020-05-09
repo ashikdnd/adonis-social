@@ -75,6 +75,21 @@ class FeedController {
     }
   }
 
+  async deleteComment({request, response}) {
+    const params = request.all();
+    try {
+      await Comment.where('_id', params['id']).delete();
+      response.json({
+        success: true
+      })
+    } catch(e) {
+      response.json({
+        success: false,
+        error: e.message
+      })
+    }
+  }
+
 }
 
 module.exports = FeedController

@@ -38,7 +38,15 @@ app.controller('feedCtrl', function($scope, $timeout, $http) {
 
     var con = confirm('Are you sure to delete this comment?');
     if(con) {
-      $scope.posts[pind].comments.splice(ind, 1);
+      $http.post('/delComment', {id: comment._id}).then(function(res) {
+        console.log(res)
+        if(res.data.success) {
+          $scope.posts[pind].comments.splice(ind, 1);
+        }
+      }, function(e) {
+        alert('Unable to delete comment');
+      })
+
     }
   }
 

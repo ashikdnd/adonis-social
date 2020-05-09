@@ -4,6 +4,11 @@
 const Model = use('Model')
 
 class Comment extends Model {
+  static get table () {
+    return 'comments'
+  }
+
+  static get objectIDs() { return ['_id', 'post_id'] }
 }
 
 module.exports = Comment

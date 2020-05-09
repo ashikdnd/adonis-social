@@ -75,12 +75,12 @@
       <div class="comments-holder">
         <div class="comments mt-2" ng-repeat="cmt in post.comments">
           <div class="row mx-3 meta">
-            <div class="cmt-profile-picture">
+            <div class="cmt-profile-picture" style="width: 32px; height: 32px">
               <img src="@{{ cmt.photo }}" class="picture rounded-circle">
-              <span>@{{cmt.name}}</span>
             </div>
             <div class="col pl-2 pr-0 user-comment">
-              <p>@{{cmt.text}}</p>
+              <div class="post-user-name"><a href="#">@{{ cmt.name }}</a></div>
+              <div>@{{cmt.text}}</div>
             </div>
             <div class="comment-actions" style="display:none">
               <a href="#" ng-click="deleteComment(cmt, $index, $parent.$index)"><i class="fas fa-times"></i></a>
@@ -101,6 +101,7 @@
       <img src="{{ assetsUrl('assets/empty.png') }}" alt="No posts found" style="width: 100%">
     </div>
   </div>
+
 
 </div>
 @endsection
