@@ -23,6 +23,7 @@ Route.group(() => {
 
   Route.post('comment', 'FeedController.comment').as('makecomment')
   Route.post('delComment', 'FeedController.deleteComment').as('deletecomment')
+  Route.post('delPost','FeedController.deletePost').as('deletepost')
 }).middleware(['auth'])
 
 

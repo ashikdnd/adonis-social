@@ -65,10 +65,17 @@ app.controller('feedCtrl', function($scope, $timeout, $http) {
       })
     }
   }
-  $scope.onDelete = function(pind){
+  $scope.onDelete = function(pind,postid){
     var con= confirm("Do you wish to delete the post??");
     if (con){
-      $scope.posts.splice(pind,1);
+      $http.post('/delPost',{key_postid : postid }).then(function(res){
+        if(res.data.success){
+          $scope.posts.splice(pind,1);
+        }
+      },function(e){
+        alert('Post delete failed');
+      })
+      
     }
   }
 });
