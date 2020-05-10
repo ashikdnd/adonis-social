@@ -131,8 +131,8 @@ html, body, .container-fluid {
 }
 
 .composer-tools i {
-  color: #8097af;
   cursor: pointer;
+  color: #8097af;
   margin-right: 5px;
 }
 
@@ -154,12 +154,14 @@ html, body, .container-fluid {
 .post-body, .user-comment {
   font-size: 14px !important;
 }
+
 .post-comment textarea {
   outline: 0;
   font-size: 14px !important;
   border-radius: 9px;
   padding-left: 10px;
   border: 1px solid #b5cdea;
+
 }
 .comments .tools a {
   font-size: 13px

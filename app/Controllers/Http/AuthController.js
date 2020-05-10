@@ -27,6 +27,8 @@ class AuthController {
       response.redirect('/login')
     }
   }
+
+ 
 }
 
 module.exports = AuthController

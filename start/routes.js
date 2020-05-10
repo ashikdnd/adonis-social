@@ -16,7 +16,6 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-
 Route.group(() => {
   Route.get('/', 'FeedController.home').as('newsfeed')
   Route.post('post', 'FeedController.post').as('makepost')
