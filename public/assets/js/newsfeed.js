@@ -73,9 +73,10 @@ app.controller('feedCtrl', function($scope, $timeout, $http) {
           $scope.posts.splice(pind,1);
         }
       },function(e){
-        alert('Post delete failed');
+        console.log(e)
+        //alert('Post delete failed');
       })
-      
+
     }
   }
 });

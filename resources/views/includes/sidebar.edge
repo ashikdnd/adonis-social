@@ -1,15 +1,15 @@
 <!--aside class="fixed-top" style="margin-top: 56px"-->
 
-  <div id="sidebar">
+  <div id="sidebar" ng-controller="sidebarCtrl">
 
     <div id="menu-list">
       <ul class="list-group sidenav">
         <li class="list-group-item bg-transparent">
           <div class="profile-info mt-3 mb-3 text-center">
-            <img src="{{ userData.profile.profile_picture }}" alt="Profile Picture"
+            <img src="@{{ user.profile.profile_picture }}" alt="Profile Picture"
                  class="profile-picture rounded-circle img-thumbnail">
             <span class="username mt-2 d-block">
-            {{ userData.name }}
+            @{{ user.name }}
           </span>
           </div>
         </li>

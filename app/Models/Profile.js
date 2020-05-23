@@ -7,6 +7,8 @@ class Profile extends Model {
   static get table () {
     return 'profiles'
   }
+
+  static get objectIDs() { return ['_id', 'user_id'] }
 }
 
 module.exports = Profile
