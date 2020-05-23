@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Newsfeed</title>
+  <title>Social</title>
   <!--Made with love by Mutiullah Samim -->
 
  <!--Fontawesome CDN-->
@@ -20,7 +20,7 @@
   {{ script('assets/plugins/timeago/ngtimeago.min.js') }}
 </head>
 
-<body>
+<body ng-app="social">
   <div class="container-fluid">
     @include('includes.header')
 
@@ -43,6 +43,10 @@
 
   <script>
     var app = angular.module('social', ['ngAnimate','yaru22.angular-timeago']);
+    var user = {{{ toJSON(userData) }}}
+    app.controller('sidebarCtrl', function($rootScope) {
+      $rootScope.user = user;
+    })
   </script>
   @!section('scripts')
 </body>

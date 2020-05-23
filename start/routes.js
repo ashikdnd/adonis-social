@@ -17,13 +17,17 @@
 const Route = use('Route')
 
 Route.group(() => {
+  // newsfeed routes
   Route.get('/', 'FeedController.home').as('newsfeed')
   Route.post('post', 'FeedController.post').as('makepost')
   Route.get('getPosts', 'FeedController.getPosts').as('getposts')
-
   Route.post('comment', 'FeedController.comment').as('makecomment')
   Route.post('delComment', 'FeedController.deleteComment').as('deletecomment')
   Route.post('delPost','FeedController.deletePost').as('deletepost')
+
+  //profile routes
+  Route.get('profile', 'ProfileController.home').as('profile')
+  Route.post('updateProfile', 'ProfileController.update').as('updateprofile')
 }).middleware(['auth'])
 
 

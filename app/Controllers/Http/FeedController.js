@@ -3,13 +3,12 @@
 const Profile = use('App/Models/Profile')
 const Comment = use('App/Models/Comment')
 const Post = use('App/Models/Post')
-const Database = use('Database')
+const User = use('App/Models/User')
 
 class FeedController {
 
   async home({auth, view}) {
-    const data = await auth.user
-    data.profile = await Profile.where("user_id", data._id).first()
+    const data = await User.where('_id', auth.user._id).with('profile').first()
     return view.render('newsfeed', {
       userData: data.toJSON()
     })
@@ -91,22 +90,21 @@ class FeedController {
     }
   }
 
- 
+
   async deletePost({request, response}) {
 
     const params = request.all();
-    const trx = await Database.beginTransaction()
+    //const trx = await Database.beginTransaction();
     try {
-
-      await Comment.where('post_id', params['key_postid']).delete(trx);
-      await Post.where('_id', params['key_postid']).delete(trx);
-      trx.commit()
+      await Comment.where('post_id', params['key_postid']).delete();
+      await Post.where('_id', params['key_postid']).delete();
+      // trx.commit()
 
       response.json({
         success: true
       })
     } catch(e) {
-      await trx.rollback()
+      // await trx.rollback()
       response.json({
         success: false,
         error: e.message

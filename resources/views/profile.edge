@@ -1,16 +1,79 @@
 @layout('master')
 
-@section('scripts')
-{{ script('assets/plugins/autosize.min.js') }}
-<script>
-  $(function() {
-    
-      })
+@section('body')
+<div ng-controller="profileCtrl">
+  <div class="row container my-4" ng-if="userProfile">
+    <div class="col-md-8 offset-md-2">
 
-  
-</script>
+      <div class="card">
+        <h5 class="card-header">Personal Details</h5>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" ng-model="userProfile.name" id="name" aria-describedby="nameHelp" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input readonly type="email" class="form-control" ng-model="userProfile.email" id="email" aria-describedby="emailHelp" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.phone" id="phone" placeholder="Phone">
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.dob" id="dob" placeholder="DOB">
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="card">
+        <h5 class="card-header">Contact Details</h5>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="add_line_1">Address line 1 *</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.line_1" id="add_line_1" placeholder="Address line 1">
+          </div>
+          <div class="form-group">
+            <label for="add_line_2">Address line 2</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.line_2" id="add_line_2" placeholder="Address line 2">
+          </div>
+          <div class="form-group">
+            <label for="city">Address line 1</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.city" id="city" placeholder="City">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.state" id="state" placeholder="State">
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.country" id="country" placeholder="Country">
+          </div>
+          <div class="form-group">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" class="form-control" ng-model="userProfile.profile.address.zipcode" id="zipcode" placeholder="Zipcode">
+          </div>
+        </div>
+      </div>
+      <br>
+      <button type="button" class="btn btn-primary" ng-click="save()">Submit</button>
+
+    </div>
+  </div>
+</div>
 @endsection
 
-@section('body')
 
+
+@section('scripts')
+{{ script('assets/plugins/autosize.min.js') }}
+
+<script>
+  var userProfile = {{{ toJSON(userData) }}}
+</script>
+
+{{ script('assets/js/profile.js') }}
 @endsection
