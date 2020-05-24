@@ -28,10 +28,15 @@ Route.group(() => {
   //profile routes
   Route.get('profile', 'ProfileController.home').as('profile')
   Route.post('updateProfile', 'ProfileController.update').as('updateprofile')
+
+  Route.get('logout', 'AuthController.logout').as('logout')
 }).middleware(['auth'])
 
 
 Route.group(() => {
+  Route.get('email', 'UserController.sendEmail').as('sendEmail')
   Route.on('login').render('auth.login').as('login')
   Route.post('login', 'AuthController.login').as('doLogin')
+  Route.on('register').render('auth.register').as('register')
+  Route.post('register', 'AuthController.register').as('doRegister')
 }).middleware(['guest'])
