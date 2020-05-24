@@ -13,7 +13,7 @@ class ProfileController {
     })
   }
 
-  async update({request, response}) {
+  async update({request, response, auth}) {
     const params = request.all();
     const name = params.name;
     const profile = params.profile;
@@ -27,7 +27,15 @@ class ProfileController {
       })
 
       // update user profile
-      await Profile.where('_id', profile._id).update(profile)
+      const prf = await Profile.where('_id', auth.user._id).first()
+      if(prf) {
+        console.log('has profile')
+        await Profile.where('_id', profile._id).update(profile)
+      } else {
+        console.log('no profile')
+        profile.user_id = auth.user._id;
+        await Profile.create(profile)
+      }
 
       // trx.commit()
 
