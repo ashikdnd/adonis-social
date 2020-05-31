@@ -13,23 +13,31 @@ class ProfileController {
     })
   }
 
-  async update({request, response, auth}) {
+  async update({request, response, auth,session}) {
+    console.log("from Update profile:" )
     const params = request.all();
     const name = params.name;
     const profile = params.profile;
 
+
+     
+   console.dir("params:" + (request))
+
     // const trx = await Database.beginTransaction()
 
     try {
+
       // update user collection
-      await User.where('_id', params._id).update({
+     //  response.implicitEnd = false
+      let msg= "Profile updated successfully"
+      await User.where('_id', auth.user._id).update({
         name: name
       })
 
       // update user profile
-      const prf = await Profile.where('_id', auth.user._id).first()
+      const prf = await Profile.where('user_id', auth.user._id).first()
       if(prf) {
-        console.log('has profile')
+        console.log('has profile' )
         await Profile.where('_id', profile._id).update(profile)
       } else {
         console.log('no profile')
@@ -38,16 +46,27 @@ class ProfileController {
       }
 
       // trx.commit()
+      console.log(msg)
 
       response.json({
-        success: true
+       success: true,
+       message: msg
       })
-    } catch(e) {
+     
+    } 
+
+    catch(e) {
       // trx.rollback()
+      let msg= "Profile update failed.."
       response.json({
         success: false,
-        error: e
+        error: e,
+        message: msg
       })
+       console.log(e)
+       session
+        .flash({ notification: 'update failed' })
+              response.redirect('/profile')
     }
 
   }
