@@ -29,6 +29,9 @@ Route.group(() => {
   Route.get('profile', 'ProfileController.home').as('profile')
   Route.post('updateProfile', 'ProfileController.update').as('updateprofile')
 
+  // Dashboard
+  Route.get('dashboard', 'DashboardController.home').as('dashboard')
+
   Route.get('logout', 'AuthController.logout').as('logout')
 }).middleware(['auth'])
 

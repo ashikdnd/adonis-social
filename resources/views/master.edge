@@ -18,6 +18,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-animate.js"></script>
   {{ script('assets/plugins/timeago/timeago.min.js') }}
   {{ script('assets/plugins/timeago/ngtimeago.min.js') }}
+  {{ script('assets/plugins/chartjs/chart.min.js') }}
+  {{ script('assets/plugins/chartjs/angular-chart.min.js') }}
 </head>
 
 <body ng-app="social">
@@ -42,7 +44,7 @@
   </div>
 
   <script>
-    var app = angular.module('social', ['ngAnimate','yaru22.angular-timeago']);
+    var app = angular.module('social', ['ngAnimate','yaru22.angular-timeago','chart.js']);
     var user = {{{ toJSON(userData) }}}
     app.controller('sidebarCtrl', function($rootScope) {
       $rootScope.user = user;
