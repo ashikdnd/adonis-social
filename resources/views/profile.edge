@@ -1,11 +1,13 @@
 @layout('master')
 
 @section('body')
+
 <div ng-controller="profileCtrl">
   <div class="row container my-4" ng-if="userProfile">
     <div class="col-md-8 offset-md-2">
 
       <div class="card">
+       
         <h5 class="card-header">Personal Details</h5>
         <div class="card-body">
           <div class="form-group">
@@ -59,11 +61,18 @@
         </div>
       </div>
       <br>
-      <button type="button" class="btn btn-primary" ng-click="save()">Submit</button>
+
+      
+      
+      <input type="button" class="btn btn-primary" ng-click="save()" value="Save">
+
+     <div ng-if="msg"> @{{msg}} </div>
+
 
     </div>
   </div>
 </div>
+
 @endsection
 
 
