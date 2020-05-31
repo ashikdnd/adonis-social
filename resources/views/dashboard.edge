@@ -1,0 +1,59 @@
+@layout('master')
+
+@section('body')
+
+<div ng-controller="dashboardCtrl">
+Dashboard page
+<div class="row">
+  <div class="col">
+    <h1>Gender based Avg Age</h1>
+    <canvas id="bar" class="chart chart-bar"
+            chart-data="bdata" chart-labels="blabels" chart-series="bseries">
+    </canvas>
+  </div>
+  <div class="col">
+    <h1>Gender Ratio</h1>
+    <canvas id="pie" class="chart chart-pie"
+            chart-data="data" chart-labels="labels" chart-options="options">
+    </canvas>
+  </div>
+</div>
+
+
+
+</div>
+
+@endsection
+
+
+
+@section('scripts')
+<script>
+app.controller('dashboardCtrl', function($scope) {
+  const ratio = {{{ toJSON(ratio) }}}
+  const avg = {{{ toJSON(avg) }}}
+  console.log(ratio)
+  console.log(avg)
+  $scope.labels = [];
+  $scope.data = [];
+  $scope.bdata = [];
+  $scope.bseries = [];
+  $scope.blabels = ['Gender Ratio'];
+  ratio.forEach(function(v, i) {
+    $scope.labels.push(v._id.toUpperCase())
+    $scope.data.push(v.count)
+  })
+
+  avg.forEach(function(v, i) {
+    $scope.bseries.push(v._id.toUpperCase())
+    $scope.bdata.push([v.avg]);
+  })
+
+
+
+
+
+
+})
+</script>
+@endsection
